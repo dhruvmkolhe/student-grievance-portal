@@ -1,0 +1,31 @@
+﻿# Redressal — Student Grievance & Review Portal
+
+## Overview
+Redressal is a full-stack web application designed for collegiate campuses to streamline student complaint registration, departmental routing, resolution workflows, and institutional accountability.
+
+## Architecture
+- **Frontend**: React 18, Vite, React Router v6, Tailwind CSS ("Obsidian Glass" design system)
+- **Backend**: Node.js, Express REST API
+- **Database**: SQLite with WAL journal mode (node:sqlite DatabaseSync)
+- **Authentication**: JWT token with bcrypt password hashing
+- **File Attachments**: Multer (images and PDFs up to 5MB)
+
+## User Roles & Purviews
+- **Student**: File tickets, attach evidence, monitor live status updates, view official administrative responses.
+- **HOD (Head of Department)**: Academic & curriculum matters, faculty teaching, examination inquiries.
+- **Proctor**: Disciplinary concerns, safety incidents, anti-ragging, campus conduct.
+- **Warden**: Hostel room amenities, cleanliness, dining mess quality.
+- **Maintenance / Repairman**: Infrastructure, electrical, plumbing, HVAC, lab fixtures.
+- **Dean / Admin**: Campus-wide executive analytics, unassigned ticket escalation, system administration.
+
+## Grievance Lifecycle
+`submitted` -> `in_review` -> `resolved` / `rejected`
+
+## Key REST API Endpoints
+- `POST /api/auth/register`: Create student or staff account
+- `POST /api/auth/login`: Authenticate and receive JWT
+- `GET /api/auth/staff`: Retrieve list of departmental staff
+- `POST /api/complaints`: Submit new grievance with multipart attachment
+- `GET /api/complaints`: Query grievances with role purview and status filters
+- `PATCH /api/complaints/:id`: Update ticket status, responder notes, and assignment
+- `GET /api/complaints/stats/summary`: Aggregate counts and average resolution metrics

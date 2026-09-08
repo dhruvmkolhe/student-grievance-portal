@@ -1,0 +1,13 @@
+﻿# robots.txt for Redressal Student Grievance Portal
+# TODO: Replace https://redressal.vercel.app with your live deployment URL if different
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Disallow: /dashboard
+Disallow: /staff
+Disallow: /hod
+Disallow: /new
+Disallow: /api/
+
+Sitemap: https://redressal.vercel.app/sitemap.xml

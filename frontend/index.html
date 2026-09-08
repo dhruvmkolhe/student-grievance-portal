@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redressal — Student Grievance Portal</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Redressal is an institutional student grievance tracking portal for collegiate campuses. File, monitor, and resolve campus issues with role-based accountability." />
+    <!-- TODO: Update canonical and social URLs with your deployed production domain -->
+    <link rel="canonical" href="https://redressal.vercel.app/" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Redressal" />
+    <meta property="og:title" content="Redressal — Student Grievance &amp; Review Portal" />
+    <meta property="og:description" content="Institutional student grievance tracking and role-based resolution platform for collegiate campuses." />
+    <meta property="og:image" content="https://redressal.vercel.app/og-image.svg" />
+    <meta property="og:image:alt" content="Redressal Student Grievance Portal Preview" />
+    <meta property="og:url" content="https://redressal.vercel.app/" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Redressal — Student Grievance &amp; Review Portal" />
+    <meta name="twitter:description" content="Institutional student grievance tracking and role-based resolution platform for collegiate campuses." />
+    <meta name="twitter:image" content="https://redressal.vercel.app/og-image.svg" />
+
+    <!-- JSON-LD Structured Data for Software Application -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Redressal",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "description": "Institutional student grievance tracking and role-based resolution platform for collegiate campuses.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Role-based grievance routing (HOD, Proctor, Warden, Maintenance, Admin)",
+          "Real-time status tracking and official administrative responses",
+          "Multipart file attachments (images and PDFs)",
+          "Campus-wide resolution metrics and analytics"
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (saved === "dark" || (!saved && prefersDark)) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

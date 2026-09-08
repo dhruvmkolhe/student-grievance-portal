@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Environment and Secret Configuration
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Local SQLite Database and WAL files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+backend/data/*.db
+backend/data/*.db-shm
+backend/data/*.db-wal
+*.sqlite
+*.sqlite3
+
+# User Attachments / Uploads
+uploads/*
+!uploads/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Build and distribution
+dist/
+frontend/dist/
+build/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS and Editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
