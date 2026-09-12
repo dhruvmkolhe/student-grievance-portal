@@ -1,10 +1,10 @@
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
-const db = require("./db");
 
-const DEFAULT_PASS = bcrypt.hashSync("Password123!", 10);
-
-console.log("Seeding users...");
+function seed(db) {
+  if (!db) db = require("./db");
+  const DEFAULT_PASS = bcrypt.hashSync("Password123!", 10);
+  console.log("Seeding users...");
 
 const additionalUsers = [
   {
@@ -368,6 +368,14 @@ complaintsData.forEach((c, index) => {
   console.log(`Seeded complaint: [${c.category}] ${c.title.substring(0, 35)}... (${c.status})`);
 });
 
-console.log("\nSeeding complete!");
-const counts = db.prepare("SELECT status, count(*) as count FROM complaints GROUP BY status").all();
-console.log("Complaints breakdown:", counts);
+  console.log("\nSeeding complete!");
+  const counts = db.prepare("SELECT status, count(*) as count FROM complaints GROUP BY status").all();
+  console.log("Complaints breakdown:", counts);
+}
+
+if (require.main === module) {
+  seed();
+}
+
+module.exports = seed;
+

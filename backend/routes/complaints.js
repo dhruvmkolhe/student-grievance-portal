@@ -16,8 +16,16 @@ const ROLE_PURVIEWS = {
   admin: null, // Full access
 };
 
+const isVercel = process.env.VERCEL === "1" || !!process.env.VERCEL;
+const uploadDir = isVercel ? path.join("/tmp", "uploads") : path.join(__dirname, "..", "uploads");
+if (!fs.existsSync(uploadDir)) {
+  try {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  } catch (e) {}
+}
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, "..", "uploads")),
+  destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => cb(null, `${uuidv4()}${path.extname(file.originalname)}`),
 });
 const upload = multer({

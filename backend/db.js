@@ -2,9 +2,12 @@ const { DatabaseSync } = require("node:sqlite");
 const path = require("path");
 const fs = require("fs");
 
-const dataDir = path.join(__dirname, "data");
+const isVercel = process.env.VERCEL === "1" || !!process.env.VERCEL;
+const dataDir = isVercel ? "/tmp" : path.join(__dirname, "data");
 if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+  try {
+    fs.mkdirSync(dataDir, { recursive: true });
+  } catch (e) {}
 }
 
 const db = new DatabaseSync(path.join(dataDir, "grievance.db"));
@@ -104,6 +107,17 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
   CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 `);
+
+// Auto-seed demo data if fresh database (e.g. on Vercel cold starts)
+try {
+  const countRow = db.prepare("SELECT COUNT(*) as count FROM users").get();
+  if (countRow && countRow.count === 0) {
+    const seed = require("./seed");
+    seed(db);
+  }
+} catch (e) {
+  console.warn("Auto-seed notice:", e.message);
+}
 
 module.exports = db;
 
