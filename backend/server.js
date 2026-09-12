@@ -53,11 +53,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-if (process.env.NODE_ENV !== "test" && !isVercel) {
-  app.listen(PORT, () => {
-    console.log(`Grievance portal API running on http://localhost:${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Grievance portal API running on http://localhost:${PORT}`);
+});
 
 module.exports = app;
 
